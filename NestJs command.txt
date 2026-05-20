@@ -1,0 +1,71 @@
+tự tạo service
+
+Tạo mới project với nestjs: nest new <project_name>(monolithic) tao ra thang chính (ví dụ fast=food-services là thằng cha)
+
+Tạo từng service: nest generate app <service_name> (microservice)
+
+muốn run service nào ghi tên nó ra (npm run start fast-food-services)
+
+nest g [moudule, service, controller] directory/path
+
+microservice đi chung với docker
+
+"docker compose up": kéo hết tất cả service database chạy cùng lúc 
+
+docker --version
+
+docker stop <name_container> (dung container)
+
+------------------------MONGO----------------------------
+docker pull mongo:latest
+
+docker run --name some-mongo -d -p 27017:27017 mongo:latest
+
+--name some-mongo: đặt tên container
+
+-d: chạy ẩn
+
+-p 27017:27017: map cổng để máy bạn có thể truy cập MongoDB
+
+docker run --name some-mongod mongo:latest
+------------------------MYSQL----------------------------
+docker pull mysql:latest
+
+docker pull mysql:8.0
+
+docker run --name some-mysql -d -p 3306:3306 ^
+  -e MYSQL_ROOT_PASSWORD=secret ^
+  -e MYSQL_DATABASE=fastfood ^
+  -e MYSQL_USER=appuser ^
+  -e MYSQL_PASSWORD=apppass ^
+  mysql:latest
+
+cd fast-food-services
+code . 
+lam cho mo vs ngau len x1000
+
+https://www.visual-paradigm.com/guide/bpmn/how-to-use-data-objects-in-bpmn/
+
+
+ussing docker
+
+- docker compose up --build order-service
+- xem cac topic trong kafka: PS C:\Users\doqua\Desktop\Fast-Food\fast-food-microservices> docker exec -it kafka kafka-topics --bootstrap-server localhost:9092 --list
+>>
+__consumer_offsets
+
+
+note: database
+mongodb+srv://fastfoodgoshu_db:tP1snjObcdA0hI81@fastfood.kizfipo.mongodb.net/authdb
+
+momo
+http://localhost:8080/payments/momo/result
+http://localhost:8080/payments/momo/result
+
+message
+docker exec -it kafkav1 bash
+kafka-topics --create \
+  --topic payment_create \
+  --bootstrap-server localhost:9092 \
+  --partitions 1 \
+  --replication-factor 1
